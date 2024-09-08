@@ -4,7 +4,7 @@
 #include <string>
 #include <optional>
 #include "include/command_register.h"
-#include "include/CommandHandler.h"
+#include "include/bot_command_handler.h"
 
 std::optional<std::string> parse_args(int argc, char* argv[]);
 void display_help();
@@ -24,10 +24,10 @@ int main(int argc, char* argv[]) {
         register_global_commands(bot);
     }
 
-    CommandHandler command_handler(bot);
+    bot_command_handler handler(bot);
 
-    bot.on_slashcommand([&command_handler](const dpp::slashcommand_t& event) {
-        command_handler.handle(event);
+    bot.on_slashcommand([&handler](const dpp::slashcommand_t& event) {
+        handler.handle(event);
     });
 
     bot.on_ready([&bot](const dpp::ready_t& event) {

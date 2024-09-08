@@ -2,9 +2,9 @@
 
 #include <dpp/dpp.h>
 
-class CommandHandler {
+class bot_command_handler {
 public:
-    CommandHandler(dpp::cluster& bot);
+    bot_command_handler(dpp::cluster& bot);
     void handle(const dpp::slashcommand_t& event);
 
 private:
@@ -21,4 +21,3 @@ private:
     void handle_work(const dpp::slashcommand_t& event);
     void handle_daily(const dpp::slashcommand_t& event);
 };
-

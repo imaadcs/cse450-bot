@@ -5,7 +5,11 @@ project(cse450bot)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_executable(cse450bot src/main.cpp)
+add_executable(cse450bot 
+	src/main.cpp
+	src/command_register.cpp
+	src/bot_command_handler.cpp
+	)
 
 include_directories(/usr/include)
 
