@@ -1,0 +1,12 @@
+implement functions already in
+/set_coins (need SUID)
+database setup for LB/persistence
+interest + tax
+/set jail_command <role> (need SUID)
+/set out_of_jail_command <role> (need SUID)
+check for if jail role added & have out of jail then remove both
+/audit_log <channel> (need SUID)
+/set tax_rate <amount1> <amount2> <percentage> (need SUID)
+/view tax_rate
+/set tax_occurance <amount> (need SUID)
+/set interest_rate (need SUID)
