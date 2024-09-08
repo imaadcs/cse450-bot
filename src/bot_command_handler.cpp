@@ -36,11 +36,11 @@ void bot_command_handler::handle_balance(const dpp::slashcommand_t& event) {
 }
 
 void bot_command_handler::handle_dice(const dpp::slashcommand_t& event) {
-    int amount = event.get_parameter("amount");
-    std::optional<dpp::snowflake> user_id = event.get_parameter<dpp::snowflake>("user");
+    int amount = std::get<long int>(event.get_parameter("amount"));
 
-    if (user_id) {
-        event.reply("You challenged <@" + std::to_string(*user_id) + "> to roll a dice for " + std::to_string(amount) + " coins!");
+    auto user_id = event.get_parameter("user");
+    if (auto snowflake = std::get_if<dpp::snowflake>(&user_id)) {
+        event.reply("You challenged <@" + std::to_string(*snowflake) + "> to roll a dice for " + std::to_string(amount) + " coins!");
     } else {
         event.reply("You rolled the dice for " + std::to_string(amount) + " coins!");
     }
@@ -71,14 +71,14 @@ void bot_command_handler::handle_richest(const dpp::slashcommand_t& event) {
 }
 
 void bot_command_handler::handle_work(const dpp::slashcommand_t& event) {
-    std::string job = event.get_parameter("job");
+    std::string job = std::get<std::string>(event.get_parameter("job"));
 
     if (job == "construction_work") {
         event.reply("You worked in construction, you feel tired but made XYZ");
     } else if (job == "office_job") {
-        event.reply("You worked an office job, its not difficult and you made XYZ");
+        event.reply("You worked an office job, it's not difficult and you made XYZ");
     } else if (job == "startup_founder") {
-        event.reply("You took a risky gamble as a startup founder and earnt nothing!");
+        event.reply("You took a risky gamble as a startup founder and earned nothing!");
     } else {
         event.reply("Invalid job --- You wasted your time!");
     }
